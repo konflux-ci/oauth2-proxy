@@ -1,0 +1,49 @@
+# Inverted .gitignore for OAuth2-Proxy Konflux Build Repository
+# This file uses ! patterns to explicitly include only the files we want to track
+# Everything else will be ignored by default
+
+# Ignore everything by default
+*
+
+# But explicitly include the core repository files
+!CODEOWNERS
+!Containerfile
+!OWNERS
+!README.md
+!.gitmodules
+
+# Include the entire oauth2-proxy submodule directory
+!oauth2-proxy/
+
+# Include hidden git files
+!.git/
+!.gitignore
+
+# Include any documentation files
+!*.md
+!*.txt
+
+# Include configuration files
+!*.yaml
+!*.yml
+!*.json
+!*.cfg
+!*.conf
+
+# Include shell scripts
+!*.sh
+
+# Include Docker/Konflux related files
+!Dockerfile*
+!Containerfile*
+!*.dockerfile
+
+# Include license files
+!LICENSE*
+!COPYING*
+
+# Include CI/CD configuration
+!.github/
+
+# Include pipeline files
+!.tekton/
