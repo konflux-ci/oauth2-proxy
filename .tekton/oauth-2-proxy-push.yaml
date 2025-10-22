@@ -469,7 +469,7 @@ spec:
         value: $(tasks.clone-repository.results.commit)
       - name: BUILD_ARGS
         value:
-        - OAUTH2_PROXY_VERSION=$(tasks.generate-version.results.OUTPUT)
+        - OAUTH2_PROXY_VERSION=$(tasks.generate-version.results.SCRIPT_OUTPUT)
       - name: BUILD_ARGS_FILE
         value: $(params.build-args-file)
       - name: SOURCE_ARTIFACT
