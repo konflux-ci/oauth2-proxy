@@ -160,6 +160,47 @@ spec:
       workspaces:
       - name: basic-auth
         workspace: git-auth
+    - name: generate-version
+      params:
+      - name: SOURCE_ARTIFACT
+        value: $(tasks.clone-repository.results.SOURCE_ARTIFACT)
+      - name: ociStorage
+        value: $(params.output-image).version
+      - name: SCRIPT_RUNNER_IMAGE
+        value: registry.access.redhat.com/ubi9/go-toolset:1.24.6-1760420453@sha256:7b1828de52c3bac600a71b81996bf748776a456181a45e2b329b39702cf6486f
+      - name: SCRIPT
+        value: |
+          #!/bin/bash
+          set -euo pipefail
+
+          # Fetch tags
+          git -C oauth2-proxy fetch --tags
+
+          # Checkout the latest tag (stable build)
+          git -C oauth2-proxy checkout $(git -C oauth2-proxy tag --sort=-v:refname | head -n 1)
+
+          # Generate version using git describe
+          VERSION=$(git -C oauth2-proxy describe --tags --always --long)
+
+          # Output the version
+          echo "Generated version: $VERSION"
+          echo "$VERSION" > "$SCRIPT_OUTPUT"
+      runAfter:
+      - clone-repository
+      taskRef:
+        params:
+        - name: name
+          value: run-script-oci-ta
+        - name: bundle
+          value: quay.io/konflux-ci/tekton-catalog/task-run-script-oci-ta:0.1@sha256:834a934f1e631a79aea7f2d001162cf90086e664e648c8ca15b69ad9798571ee
+        - name: kind
+          value: task
+        resolver: bundles
+      when:
+      - input: $(tasks.init.results.build)
+        operator: in
+        values:
+        - "true"
     - name: prefetch-dependencies
       params:
       - name: input
@@ -171,7 +212,7 @@ spec:
       - name: ociArtifactExpiresAfter
         value: $(params.image-expires-after)
       runAfter:
-      - clone-repository
+      - generate-version
       taskRef:
         params:
         - name: name
@@ -204,7 +245,7 @@ spec:
         value: $(tasks.clone-repository.results.commit)
       - name: BUILD_ARGS
         value:
-        - $(params.build-args[*])
+        - OAUTH2_PROXY_VERSION=$(tasks.generate-version.results.SCRIPT_OUTPUT)
       - name: BUILD_ARGS_FILE
         value: $(params.build-args-file)
       - name: PRIVILEGED_NESTED
@@ -428,7 +469,7 @@ spec:
         value: $(tasks.clone-repository.results.commit)
       - name: BUILD_ARGS
         value:
-        - $(params.build-args[*])
+        - OAUTH2_PROXY_VERSION=$(tasks.generate-version.results.SCRIPT_OUTPUT)
       - name: BUILD_ARGS_FILE
         value: $(params.build-args-file)
       - name: SOURCE_ARTIFACT
