@@ -170,7 +170,7 @@ spec:
         value: registry.access.redhat.com/ubi9/go-toolset:1.24.6-1760420453@sha256:7b1828de52c3bac600a71b81996bf748776a456181a45e2b329b39702cf6486f
       - name: SCRIPT
         value: |
-          #!/bin/bash
+          #!/bin/bash -x
           set -euo pipefail
 
           # Fetch tags
