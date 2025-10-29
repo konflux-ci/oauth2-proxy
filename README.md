@@ -18,7 +18,7 @@ This repository provides:
    git submodule update --init --recursive
    ```
 
-   **Note:** The submodule is configured to track tags (not branches) for automated dependency updates via MontMaker/Renovate. This means `git submodule update --remote` will not work as expected. To manually update the submodule to a different tag, navigate to the submodule directory and run:
+   **Note:** The submodule is configured to track tags (not branches) for automated dependency updates via MintMaker/Renovate. This means `git submodule update --remote` will not work as expected. To manually update the submodule to a different tag, navigate to the submodule directory and run:
 
    ```bash
    cd oauth2-proxy
