@@ -18,6 +18,15 @@ This repository provides:
    git submodule update --init --recursive
    ```
 
+   **Note:** The submodule is configured to track tags (not branches) for automated dependency updates via MontMaker/Renovate. This means `git submodule update --remote` will not work as expected. To manually update the submodule to a different tag, navigate to the submodule directory and run:
+
+   ```bash
+   cd oauth2-proxy
+   git fetch && git checkout <branch | tag-name>
+   ```
+
+   depending of if you want to checkout a branch or a tag.
+
 2. **Build locally using Docker**:
 
    ```bash
@@ -32,6 +41,27 @@ For local testing and development, you can use the upstream project's build syst
 cd oauth2-proxy
 make build
 ```
+
+### Submodule Updates
+
+This repository uses MintMaker/Renovate to automatically update the git submodule when new stable semantic version tags are released upstream. The `.gitmodules` file is configured with `branch = v7.12.0` to track tags rather than branches.
+
+**⚠️ Important:** This configuration disrupts the native Git submodule update workflow. The standard `git submodule update --remote` command will fail with an error like `fatal: Unable to find refs/remotes/origin/v7.12.0 revision in submodule path...` because Git expects the `branch` field to reference an actual branch, not a tag.
+
+To manually update the submodule to a specific tag:
+
+```bash
+cd oauth2-proxy
+git fetch --tags
+git checkout  <branch> | <tag-name>
+cd ..
+git add oauth2-proxy
+git commit -m "Update submodule to <branch | tag-name>"
+```
+
+depending of if you want to checkout a branch or a tag.
+
+Renovate will automatically create pull requests when new tags matching semantic versioning are available upstream.
 
 ### Version Information
 
