@@ -4,7 +4,7 @@
 ARG OAUTH2_PROXY_VERSION
 
 # Build stage
-FROM registry.access.redhat.com/ubi9/go-toolset:9.7-1763038106@sha256:380d6de9bbc5a42ca13d425be99958fb397317664bb8a00e49d464e62cc8566c AS builder
+FROM registry.access.redhat.com/ubi10/go-toolset:10.1-1763039498@sha256:08e58c1a0f4db86deaac841ac612834df57fcb10f85e69f382c8c6f1acee4de7 AS builder
 
 # Redeclare ARG for this stage
 ARG OAUTH2_PROXY_VERSION
@@ -28,7 +28,7 @@ RUN CGO_ENABLED=0 go build -a -installsuffix cgo \
     touch jwt_signing_key.pem
 
 # Runtime stage
-FROM registry.access.redhat.com/ubi9-micro:9.7-1762965531@sha256:e14a8cbcaa0c26b77140ac85d40a47b5e910a4068686b02ebcad72126e9b5f86
+FROM registry.access.redhat.com/ubi10-micro:10.1-1762215812@sha256:c2a5841f6fc280b93761e8a55f3de9e5dd861cdcfca8de04a8c574f15fd7acac
 
 # Copy binary from builder stage
 COPY --from=builder /workspace/oauth2-proxy/oauth2-proxy /bin/oauth2-proxy
