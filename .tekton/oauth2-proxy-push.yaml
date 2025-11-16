@@ -12,9 +12,9 @@ metadata:
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: oauth2-proxy
-    appstudio.openshift.io/component: oauth-2-proxy
+    appstudio.openshift.io/component: oauth2-proxy
     pipelines.appstudio.openshift.io/type: build
-  name: oauth-2-proxy-on-push
+  name: oauth2-proxy-on-push
   namespace: konflux-infra-tenant
 spec:
   params:
@@ -23,13 +23,13 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/konflux-infra-tenant/oauth-2-proxy:{{revision}}
+    value: quay.io/redhat-user-workloads/konflux-infra-tenant/oauth2-proxy:{{revision}}
   - name: dockerfile
     value: ./Containerfile
   pipelineRef:
     name: oauth2-proxy-pipeline
   taskRunTemplate:
-    serviceAccountName: build-pipeline-oauth-2-proxy
+    serviceAccountName: build-pipeline-oauth2-proxy
   workspaces:
   - name: git-auth
     secret:
