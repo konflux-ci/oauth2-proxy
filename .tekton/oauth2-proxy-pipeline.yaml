@@ -153,9 +153,6 @@ spec:
         # Fetch tags
         git -C oauth2-proxy fetch --tags
 
-        # Checkout the latest tag (stable build)
-        git -C oauth2-proxy checkout $(git -C oauth2-proxy tag --sort=-v:refname | head -n 1)
-
         # Generate version using git describe
         VERSION=$(git -C oauth2-proxy describe --tags --always --long)
 
