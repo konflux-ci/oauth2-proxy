@@ -28,7 +28,7 @@ RUN CGO_ENABLED=0 go build -a -installsuffix cgo \
     touch jwt_signing_key.pem
 
 # Runtime stage
-FROM registry.access.redhat.com/ubi10-micro:10.1-1765178423@sha256:d5ba6a075880deb061ac2c7d89c7c409e7948b3abd60b591578621c1b6307b62
+FROM registry.access.redhat.com/ubi10-micro:10.1-1766049088@sha256:2946fa1b951addbcd548ef59193dc0af9b3e9fedb0287b4ddb6e697b06581622
 
 # Copy binary from builder stage
 COPY --from=builder /workspace/oauth2-proxy/oauth2-proxy /bin/oauth2-proxy
