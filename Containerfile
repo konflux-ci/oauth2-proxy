@@ -48,7 +48,7 @@ LABEL org.opencontainers.image.licenses=MIT \
     name=oauth2-proxy \
     release=${OAUTH2_PROXY_VERSION} \
     url=https://github.com/oauth2-proxy/oauth2-proxy \
-    vendor=Konflux \
+    vendor="Red Hat, Inc." \
     version=${OAUTH2_PROXY_VERSION} \
     maintainer="Konflux Infrastructure Team <konflux-infra@redhat.com>"
 
