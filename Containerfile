@@ -33,6 +33,7 @@ FROM registry.access.redhat.com/ubi10/ubi-minimal@sha256:a74a7a92d3069bfac09c688
 # Copy binary from builder stage
 COPY --from=builder /workspace/oauth2-proxy/oauth2-proxy /bin/oauth2-proxy
 COPY --from=builder /workspace/oauth2-proxy/jwt_signing_key.pem /etc/ssl/private/jwt_signing_key.pem
+USER 65532:65532
 
 LABEL org.opencontainers.image.licenses=MIT \
     org.opencontainers.image.description="A reverse proxy that provides authentication with Google, Azure, OpenID Connect and many more identity providers." \
