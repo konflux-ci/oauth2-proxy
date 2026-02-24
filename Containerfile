@@ -10,7 +10,7 @@ FROM registry.access.redhat.com/ubi10/go-toolset:10.1-1770726582@sha256:1edf7bd8
 ARG OAUTH2_PROXY_VERSION
 
 # Set working directory to the submodule location
-WORKDIR /workspace/oauth2-proxy
+WORKDIR /opt/app-root/src
 
 # Copy go mod files first for better layer caching
 COPY oauth2-proxy/go.mod oauth2-proxy/go.sum ./
@@ -31,8 +31,8 @@ RUN CGO_ENABLED=0 go build -a -installsuffix cgo \
 FROM registry.access.redhat.com/ubi10/ubi-minimal@sha256:a74a7a92d3069bfac09c6882087771fc7db59fa9d8e16f14f4e012fe7288554c
 
 # Copy binary from builder stage
-COPY --from=builder /workspace/oauth2-proxy/oauth2-proxy /bin/oauth2-proxy
-COPY --from=builder /workspace/oauth2-proxy/jwt_signing_key.pem /etc/ssl/private/jwt_signing_key.pem
+COPY --from=builder /opt/app-root/src/oauth2-proxy /bin/oauth2-proxy
+COPY --from=builder /opt/app-root/src/jwt_signing_key.pem /etc/ssl/private/jwt_signing_key.pem
 USER 65532:65532
 
 LABEL org.opencontainers.image.licenses=MIT \
