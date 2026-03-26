@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>konflux-ci/mintmaker//config/renovate/renovate.json"
+  ],
+  "enabledManagers": [
+    "tekton",
+    "dockerfile",
+    "rpm-lockfile",
+    "git-submodules"
+  ],
+  "description": [
+    "approved/lgtm labels and autoApprove are required by the merge gate. Without them PRs cannot merge, even with auto-merge enabled. Actual merge safety is enforced by branch protection and required status checks."
+  ],
+  "addLabels": [
+    "approved",
+    "lgtm",
+    "mintmaker"
+  ],
+  "autoApprove": true,
+  "packageRules": [
+    {
+      "description": "Auto-merge all dependency updates when CI passes",
+      "matchPackageNames": [
+        "*"
+      ],
+      "automerge": true,
+      "addLabels": ["auto-merged"]
+    },
+    {
+      "description": "Require manual review for submodule updates",
+      "matchManagers": [
+        "git-submodules"
+      ],
+      "automerge": false
+    }
+  ]
+}
