@@ -44,9 +44,9 @@ make build
 
 ### Submodule Updates
 
-This repository uses MintMaker/Renovate to automatically update the git submodule when new stable semantic version tags are released upstream. The `.gitmodules` file is configured with `branch = v7.12.0` to track tags rather than branches.
+This repository uses MintMaker/Renovate to automatically update the git submodule when new stable semantic version tags are released upstream. The `.gitmodules` file is configured with `branch = v7.15.2` to track tags rather than branches.
 
-**⚠️ Important:** This configuration disrupts the native Git submodule update workflow. The standard `git submodule update --remote` command will fail with an error like `fatal: Unable to find refs/remotes/origin/v7.12.0 revision in submodule path...` because Git expects the `branch` field to reference an actual branch, not a tag.
+**Important:** This configuration disrupts the native Git submodule update workflow. The standard `git submodule update --remote` command will fail with an error like `fatal: Unable to find refs/remotes/origin/v7.15.2 revision in submodule path...` because Git expects the `branch` field to reference an actual branch, not a tag.
 
 To manually update the submodule to a specific tag:
 
@@ -65,9 +65,9 @@ Renovate will automatically create pull requests when new tags matching semantic
 
 ### Version Information
 
-- **Current stable version**: `v7.12.0`
+- **Current stable version**: `v7.15.2`
 - **Go version**: `1.24.6`
-- **Supported architectures**: `linux/amd64`
+- **Supported architectures**: `linux/x86_64`, `linux/arm64`
 
 ## Upstream Project
 
@@ -103,7 +103,7 @@ This repository is designed to work with Konflux CI/CD pipelines. The actual con
 
 The `Containerfile` provides:
 
-- **Red Hat UBI base images**: Uses UBI9 Go toolset for building and UBI9 minimal for runtime
+- **Red Hat UBI base images**: Uses UBI10 Go toolset for building and UBI10 minimal for runtime
 - **Pinned image versions**: Uses specific SHA hashes for reproducible builds
 - **Multi-stage builds**: Optimized image size with separate build and runtime stages
 - **Layer caching optimization**: Dependencies downloaded only when `go.mod` changes
