@@ -13,6 +13,8 @@ Konflux wrapper repo for the upstream [oauth2-proxy](https://github.com/oauth2-p
 | Build upstream Go | `cd oauth2-proxy && make build` |
 | Test upstream Go | `cd oauth2-proxy && make test` |
 | Lint upstream Go | `cd oauth2-proxy && golangci-lint run` |
+| Pre-commit setup | `pip install pre-commit && pre-commit install` |
+| Pre-commit all | `pre-commit run --all-files` |
 
 ### Single-File Verification
 
