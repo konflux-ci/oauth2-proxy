@@ -10,6 +10,12 @@ This repository provides:
 - **Git submodule**: Links to the upstream [oauth2-proxy](https://github.com/oauth2-proxy/oauth2-proxy) project
 - **Konflux integration**: Automated CI/CD pipeline configuration
 
+## Prerequisites
+
+- Git (with submodule support)
+- Podman or Docker
+- Access to `registry.access.redhat.com` for UBI base images
+
 ## Quick Start
 
 1. **Initialize the submodule**:
@@ -27,10 +33,10 @@ This repository provides:
 
    depending of if you want to checkout a branch or a tag.
 
-2. **Build locally using Docker**:
+2. **Build locally**:
 
    ```bash
-   docker build -f Containerfile -t oauth2-proxy .
+   podman build --build-arg OAUTH2_PROXY_VERSION=v7.12.0 -f Containerfile -t oauth2-proxy .
    ```
 
 ## Local Development
