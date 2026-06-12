@@ -37,6 +37,8 @@
 !Dockerfile*
 !Containerfile*
 !*.dockerfile
+!.containerignore
+!.dockerignore
 
 # Include license files
 !LICENSE*
