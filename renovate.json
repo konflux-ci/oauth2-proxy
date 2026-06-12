@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>konflux-ci/mintmaker//config/renovate/renovate.json"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Keep SCRIPT_RUNNER_IMAGE in Tekton pipeline in sync with Containerfile builder image",
+      "fileMatch": ["\\.tekton/.+\\.yaml$"],
+      "matchStrings": [
+        "SCRIPT_RUNNER_IMAGE\\n\\s+value:\\s+(?<depName>[^:]+):(?<currentValue>[^@]+)@(?<currentDigest>sha256:[a-f0-9]+)"
+      ],
+      "datasourceTemplate": "docker"
+    }
+  ]
+}
