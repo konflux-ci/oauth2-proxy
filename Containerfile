@@ -4,7 +4,7 @@
 ARG OAUTH2_PROXY_VERSION
 
 # Build stage
-FROM registry.access.redhat.com/ubi10/go-toolset:10.2-1782735972@sha256:efa721f5d675f0494425ea582823d4324f546c0e19f13ca996942a1c354c8497 AS builder
+FROM registry.access.redhat.com/ubi10/go-toolset:10.2-1782881130@sha256:8bdf6cb73f3b396f61f75b0a597397d36b427a6f3fda96ee2854a7a36c814c0f AS builder
 
 # Redeclare ARG for this stage
 ARG OAUTH2_PROXY_VERSION
