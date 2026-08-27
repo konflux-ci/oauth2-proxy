@@ -23,7 +23,7 @@ jobs:
       statuses: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: konflux-ci/deptriage@b5dc82a37cb4b812f3ff37203e12f4308fd23ee2 # main
+      - uses: konflux-ci/deptriage@f820cb2f600b723b170f4895fd3bc49d6b2b6121 # main
         with:
           command: both
           pr-number: ${{ github.event.pull_request.number }}
