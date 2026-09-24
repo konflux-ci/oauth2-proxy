@@ -50,3 +50,7 @@
 
 # Include pipeline files
 !.tekton/
+
+# Include AI skills and agent discovery symlink (not local settings)
+!skills/
+!skills/**
