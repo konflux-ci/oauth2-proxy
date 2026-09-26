@@ -52,8 +52,5 @@
 !.tekton/
 
 # Include AI skills and agent discovery symlink (not local settings)
-!.claude/
-!.claude/skills
-.claude/settings.local.json
 !skills/
 !skills/**
