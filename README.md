@@ -1,3 +1,9 @@
+# Deprecated
+
+## This repository is no longer active or maintained
+## The container image produced here has been retired and replaced by the updated [image](https://images.redhat.com/?name=oauth2-proxy) provided by the [Red Hat Hummingbird Project](https://images.redhat.com/)
+
+
 # OAuth2-Proxy Konflux Build
 
 This repository contains the build configuration for creating OAuth2-Proxy container images using Konflux CI. The upstream OAuth2-Proxy project is included as a git submodule.
